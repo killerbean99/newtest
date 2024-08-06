@@ -18,12 +18,12 @@ install:
 
 script:
   - echo "Compiling 32-bit version"
-  - yes | buildozer android release
+  - yes | travis_wait 20 buildozer android release
   - ls -la
   - ls bin/ -l
   - echo "Compiling 64-bit version"
   - yes | cp -f buildozer-64bit.spec buildozer.spec
-  - yes | buildozer android release
+  - yes | travis_wait 20 buildozer android release
   - ls -la
   - ls bin/ -l
 
