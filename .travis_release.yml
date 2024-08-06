@@ -16,11 +16,11 @@ install:
 
 script:
   - export PATH=$PATH:~/.local/bin/
-  - buildozer android debug
+  - buildozer android release
 
 deploy:
   provider: releases
-  token: $GITHUB_TOKEN
+  token: $g_token
   file: bin/mobileapp001-0.3-armeabi-v7a-debug.apk
   skip_cleanup: true
   on:
