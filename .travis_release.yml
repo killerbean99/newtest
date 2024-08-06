@@ -36,6 +36,3 @@ deploy:
   cleanup: true
   on:
     tags: true
-
-# Increase the timeout setting
-timeout: 30
