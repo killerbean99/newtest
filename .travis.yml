@@ -6,22 +6,26 @@ python:
   - 3.12
 
 install:
+  - sudo apt-get install python3-dev
   - sudo apt -y install python3-distutils
   - sudo apt -y install python3-pip
   - sudo apt install -y git
+  - sudo apt-get update
+  - sudo apt-get install pkg-config libssl-dev
+  - sudo apt-get install -y python3-pip build-essential git python3-dev libssl-dev libffi-dev zlib1g-dev libncurses5-dev libgdbm-dev libc6-dev libsqlite3-dev libreadline-dev libbz2-dev
   - git clone https://github.com/kivy/buildozer.git
   - python3 -m site
   - ls -l
   - cd buildozer
+  - buildozer android clean
   - ls -l
   - python3 setup.py install
   - ls -l
   - cd ..
   - ls -l
-
   - sudo apt update
   - sudo apt install -y git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-  - pip3 install --upgrade Cython==0.29.19 virtualenv
+  - pip3 install --upgrade cython
   - pip3 install --upgrade buildozer
   - pip3 install --upgrade python-for-android
   - export PATH=$PATH:~/.local/bin/
