@@ -7,27 +7,35 @@ python:
 
 install:
   - sudo apt-get update
-  - sudo apt-get install -y python3-dev python3-distutils python3-pip git pkg-config libssl-dev build-essential libffi-dev zlib1g-dev libncurses5-dev libgdbm-dev libc6-dev libsqlite3-dev libreadline-dev libbz2-dev zip unzip openjdk-8-jdk autoconf libtool cmake
+  - sudo apt-get install -y python3-dev python3-distutils python3-pip git pkg-config libssl-dev build-essential libffi-dev zlib1g-dev libncurses5-dev libgdbm-dev libc6-dev libsqlite3-dev libreadline-dev libbz2-dev
   - git clone https://github.com/kivy/buildozer.git
   - cd buildozer
   - python3 setup.py install
   - cd ..
+  - sudo apt install -y git zip unzip openjdk-8-jdk autoconf libtool libncursesw5-dev libtinfo5 cmake
   - pip3 install --upgrade cython buildozer python-for-android
+  - export PATH=$PATH:~/.local/bin/
 
 script:
-  - export PATH=$PATH:~/.local/bin/
-  - buildozer android debug
+  - echo "Compiling 32-bit version"
+  - yes | buildozer android debug
+  - ls -la
+  - ls bin/ -l
+  - echo "Compiling 64-bit version"
+  - yes | cp -f buildozer-64bit.spec buildozer.spec
+  - yes | buildozer android debug
+  - ls -la
+  - ls bin/ -l
 
 deploy:
   provider: releases
   token: $g_token
-  file: bin/mobileapp001-0.3-armeabi-v7a-debug.apk
+  file:
+    - "bin/mobileapp001-0.3-armeabi-v7a-debug.apk"
+    - "bin/mobileapp001-0.3-arm64-v8a-debug.apk"
   cleanup: true
   on:
     tags: true
 
-after_success:
-  - rm -rf .buildozer
-  - cp -f buildozer-64bit.spec buildozer.spec
-  - buildozer android debug
-  - dpl releases --token $g_token --file "bin/mobileapp001-0.3-arm64-v8a-debug.apk" --tag_name "v.0.3"
+# Increase the timeout setting
+timeout: 30
