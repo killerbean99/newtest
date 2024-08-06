@@ -16,7 +16,7 @@ orientation = portrait
 
 # OSX Specific
 osx.python_version = 3
-osx.kivy_version = 2.0.0
+osx.kivy_version = 2.3.0
 
 # Android specific
 fullscreen = 0

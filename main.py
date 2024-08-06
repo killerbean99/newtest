@@ -3,8 +3,17 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from random import randint
 
-from math_logic import generate_new_math
+def generate_new_math():
+    num1 = randint(0, 4)
+    num2 = randint(0, 10)
+    problem = 'Есепті шығар:\n'
+    problem += str(int(num1)) + '*' + str(int(num2)) + '='
+    solution = int(num1 * num2)
+
+    return problem, solution
+
 
 class MathQuizApp(App):
     def build(self):
