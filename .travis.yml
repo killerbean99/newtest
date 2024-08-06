@@ -17,7 +17,6 @@ install:
   - python3 -m site
   - ls -l
   - cd buildozer
-  - buildozer android clean
   - ls -l
   - python3 setup.py install
   - ls -l
