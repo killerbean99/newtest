@@ -21,25 +21,25 @@ class MathQuizApp(App):
 
         self.layout = BoxLayout(orientation='vertical')
 
-        self.problem_label = Label(text='Press "Next" to start the quiz')
+        self.problem_label = Label(text='Жалғастыру үшін "Келесі" батырмасын басыңыз.')
         self.layout.add_widget(self.problem_label)
 
-        self.user_input = TextInput(hint_text='Enter your answer here')
+        self.user_input = TextInput(hint_text='Жауабын осында жазыңыз:')
         self.layout.add_widget(self.user_input)
 
         self.result_label = Label(text='')
         self.layout.add_widget(self.result_label)
 
-        self.next_button = Button(text='Next', on_press=self.next_problem)
+        self.next_button = Button(text='Келесі', on_press=self.next_problem)
         self.layout.add_widget(self.next_button)
 
-        self.submit_button = Button(text='Submit', on_press=self.check_answer)
+        self.submit_button = Button(text='Жіберу', on_press=self.check_answer)
         self.layout.add_widget(self.submit_button)
 
         return self.layout
 
     def next_problem(self, instance):
-        self.problem, self.problem_type, self.solution = generate_new_math()
+        self.problem, self.solution = generate_new_math()
         self.problem_label.text = self.problem
         self.result_label.text = ''
         self.user_input.text = ''
